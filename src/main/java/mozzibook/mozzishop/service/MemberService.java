@@ -27,6 +27,21 @@ public class MemberService {
     }
 
     /**
+     *  로그인
+     */
+
+    public Long singIn(String email, String password){
+
+        //회원이 없을 경우 체크
+        Member member = memberRepository.findByEmail(email);
+        if(member.getPassword().equals(password)){
+            return member.getId();
+        }
+        //비번이 틀렷을 경우 체크
+        return 0L;
+    }
+
+    /**
      * 회원조회
      */
     public List<Member> findMembers(){
@@ -36,6 +51,8 @@ public class MemberService {
     public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
     }
+
+
 
 
 }
