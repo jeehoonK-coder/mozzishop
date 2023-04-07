@@ -21,8 +21,9 @@ public class MemberService {
      * 회원가입
      */
     @Transactional
-    public Long join(Member member){
+    public Long join(String username, String nickname, String email, String password){
         //중복검증?
+        Member member = Member.createMember(username, nickname, email, password);
         return memberRepository.save(member);
     }
 
